@@ -22,7 +22,14 @@ dependencies {
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
     implementation("org.springframework.session:spring-session-core")
+    implementation("io.jsonwebtoken:jjwt-api:0.11.1")
+    implementation("io.arrow-kt:arrow-core:0.10.5")
+    implementation("io.arrow-kt:arrow-fx:0.10.5")
+    implementation("io.arrow-kt:arrow-optics:0.10.5")
+    implementation("io.arrow-kt:arrow-syntax:0.10.5")
     runtimeOnly("org.postgresql:postgresql")
+    runtimeOnly("io.jsonwebtoken:jjwt-impl:0.11.1")
+    runtimeOnly("io.jsonwebtoken:jjwt-jackson:0.11.1")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
 }
 

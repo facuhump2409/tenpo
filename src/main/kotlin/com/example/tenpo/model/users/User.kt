@@ -5,7 +5,8 @@ import com.example.tenpo.model.dtos.DTO
 import javax.persistence.*
 
 @Entity
-class User(
+@Table(name = "users")
+data class User(
     @Column
     val email: String,
     @Column
@@ -14,7 +15,7 @@ class User(
     val salt: String,
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    val id: Long
+    val id: Long = 0
 ) : Requestable {
     override fun dto(): DTO.UserDto {
         return DTO.UserDto(

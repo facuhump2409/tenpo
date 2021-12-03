@@ -23,7 +23,7 @@ class RequestResponseFilter(@Autowired private val requestRepo: RequestsRepo) : 
         println("Logging Request ")
         println(req.method)
         println(req.requestURI)
-        val newRequest = Request(request.requestURI, request.method, response.status)
+        val newRequest = Request(req.requestURI, req.method, res.status)
         requestRepo.save(newRequest)
     }
 }

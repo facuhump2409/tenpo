@@ -13,18 +13,29 @@ class RequestsServiceController(
     @Value("\${requests.per.page:2}") private val requestsPerPage: Int
 ) {
     fun getRequestsHistoricalData(page: Int): DTO.RequestsDto {
-        val requests = requestsRepo.requests
+        val requests = requestsRepo.findAll()
         val requestsCount = requests.size
         val pages = calculatePages(requestsCount)
         if (pages < page || page < 1)
             throw CustomException.BadRequest.PageDoesNotExistException("Page $page does not exist")
-        val from = if(page == 1) 0 else (page - 1) * requestsPerPage
-        var to = (page) * requestsPerPage
-        if(page == pages) to = requestsCount
-        if (page == 1) to = requestsPerPage
+        val from = calculateFromPage(page)
+        val to = calculateToPage(page, pages, requestsCount)
         val sublist = requests.subList(from, to)
         val nextPage: String? = if (page < pages) "/requests?page=${page + 1}" else null
         return DTO.RequestsDto(sublist, page, nextPage)
+    }
+
+    fun calculateFromPage(page: Int): Int {
+        return if (page == 1) 0 else (page - 1) * requestsPerPage
+    }
+
+    fun calculateToPage(page: Int, pages: Int, requestsCount: Int): Int {
+        var to = (page) * requestsPerPage
+        if (page == pages)
+            to = requestsCount
+        else if (page == 1)
+            to = requestsPerPage
+        return to
     }
 
     fun calculatePages(size: Int): Int {

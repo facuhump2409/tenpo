@@ -32,7 +32,7 @@ class UserControllerService(
         if (usersRepo.findByMail(newUser.mail).isNotEmpty())
             throw CustomException.BadRequest.RepeatedUserException("There is already a user under that email")
         val (salt, hashedPassword) = SHA512Hash.hashPassword(newUser.password)
-        val user = User(UUID.randomUUID(), newUser.mail, hashedPassword, salt)
+        val user = User(newUser.mail, hashedPassword, salt)
         usersRepo.saveUser(user)
         return user.dto()
     }

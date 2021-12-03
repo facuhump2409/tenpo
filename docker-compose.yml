@@ -3,28 +3,35 @@ services:
     tenpo-backend:
         build: .
         container_name: 'tenpo-backend'
-        ports: 
-            - 8080:8080
+        ports:
+            - "8080:8080"
         depends_on:
-            - mongodb
+            - db
         networks:
             - backend
             - db
         environment:
-            - SPRING_DATA_MONGODB_HOST=mongodb
-            - SPRING_DATA_MONGODB_PORT=27017
-            - SPRING_DATA_MONGODB_DATABASE=wololo-tacs
-    mongodb:
-        image: mongo:latest
-        container_name: 'mongodb-container'
+            - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/tenpo?serverTimezone=UTC
+            - SPRING_DATASOURCE_USERNAME=postgres
+            - SPRING_DATASOURCE_PASSWORD=root
+            - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+    db:
+        container_name: db
+        image: postgres
+        restart: always
         environment:
-            - MONGO_INITDB_DATABASE=wololo-tacs
-        volumes:
-            - ./init-mongo.js:/docker-entrypoint-initdb.d/init-mongo.js:ro
+            POSTGRES_USER: postgres
+            POSTGRES_PASSWORD: root
+            POSTGRES_DB: tenpo
         ports:
-            - 27017:27017
+            - "5432:5432"
+        volumes:
+            - $HOME/Desktop/PostgreSql-Snippets/infile:/infile
+            - pg_data:/var/lib/postgresql/data/
         networks:
             - db
 networks:
     db:
     backend:
+volumes:
+    pg_data:

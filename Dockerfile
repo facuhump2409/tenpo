@@ -1,11 +1,11 @@
-FROM gradle:6.6.1-jdk11 as cache
+FROM gradle:6.8.0-jdk11 as cache
 RUN mkdir -p /home/gradle/cache_home
 ENV GRADLE_USER_HOME /home/gradle/cache_home
 COPY build.gradle.kts /home/gradle/kotlin-code/
 WORKDIR /home/gradle/kotlin-code
 RUN gradle clean build -i --stacktrace -x bootJar
 
-FROM gradle:6.6.1-jdk11 as builder
+FROM gradle:6.8.0-jdk11 as builder
 COPY --from=cache /home/gradle/cache_home /home/gradle/.gradle
 COPY . /usr/src/kotlin-code/
 WORKDIR /usr/src/kotlin-code

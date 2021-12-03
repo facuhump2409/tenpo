@@ -1,3 +1,3 @@
 package com.example.tenpo.model.requests
 
-data class Request(val endpoint: String, val method: String)
+data class Request(val endpoint: String, val method: String, val responseCode: Int)

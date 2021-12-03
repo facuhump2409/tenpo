@@ -8,6 +8,7 @@ import javax.servlet.FilterChain
 import javax.servlet.ServletRequest
 import javax.servlet.ServletResponse
 import javax.servlet.http.HttpServletRequest
+import javax.servlet.http.HttpServletResponse
 
 
 @Component
@@ -16,10 +17,11 @@ class RequestResponseFilter(@Autowired private val requestRepo: RequestsRepo) : 
     override fun doFilter(request: ServletRequest?, response: ServletResponse?, chain: FilterChain?) {
         println("Persisting request")
         val req = request as HttpServletRequest
+        val res = response as HttpServletResponse
         chain?.doFilter(request, response)
         println("Logging Request ")
         println(req.method)
         println(req.requestURI)
-        requestRepo.saveRequest(req)
+        requestRepo.saveRequest(req, res)
     }
 }

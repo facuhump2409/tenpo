@@ -1,7 +1,6 @@
 package com.example.tenpo.controllers
 
 import com.example.tenpo.model.dtos.DTO
-import com.example.tenpo.model.requests.Request
 import com.example.tenpo.services.RequestsServiceController
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.GetMapping

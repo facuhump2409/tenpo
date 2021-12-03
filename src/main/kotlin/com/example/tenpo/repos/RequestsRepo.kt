@@ -1,16 +1,7 @@
 package com.example.tenpo.repos
 
 import com.example.tenpo.model.requests.Request
-import org.springframework.stereotype.Repository
-import javax.servlet.http.HttpServletRequest
-import javax.servlet.http.HttpServletResponse
+import org.springframework.data.jpa.repository.JpaRepository
 
-@Repository
-class RequestsRepo {
-    val requests: MutableList<Request> = mutableListOf()
-
-    fun saveRequest(request: HttpServletRequest, response: HttpServletResponse) {
-        val newRequest = Request(request.requestURI, request.method, response.status)
-        requests.add(newRequest)
-    }
+interface RequestsRepo : JpaRepository<Request, Long> {
 }

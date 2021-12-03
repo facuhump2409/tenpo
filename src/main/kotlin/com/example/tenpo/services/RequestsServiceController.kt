@@ -13,7 +13,7 @@ class RequestsServiceController(
     @Value("\${requests.per.page:2}") private val requestsPerPage: Int
 ) {
     fun getRequestsHistoricalData(page: Int): DTO.RequestsDto {
-        val requests = requestsRepo.requests
+        val requests = requestsRepo.findAll()
         val requestsCount = requests.size
         val pages = calculatePages(requestsCount)
         if (pages < page || page < 1)

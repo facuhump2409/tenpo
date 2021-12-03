@@ -1,5 +1,6 @@
 package com.example.tenpo.controllers.filters
 
+import com.example.tenpo.model.requests.Request
 import com.example.tenpo.repos.RequestsRepo
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Component
@@ -22,6 +23,7 @@ class RequestResponseFilter(@Autowired private val requestRepo: RequestsRepo) : 
         println("Logging Request ")
         println(req.method)
         println(req.requestURI)
-        requestRepo.saveRequest(req, res)
+        val newRequest = Request(request.requestURI, request.method, response.status)
+        requestRepo.save(newRequest)
     }
 }

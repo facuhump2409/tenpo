@@ -28,10 +28,10 @@ abstract class BaseController {
     @ResponseStatus(HttpStatus.UNAUTHORIZED)
     fun handleUnauthorizedException(exception: CustomException) = exception.dto()
 
-    fun checkAndGetUserId(request: HttpServletRequest): String {
+    fun checkUserLogin(request: HttpServletRequest) {
         val cookie: Cookie? = WebUtils.getCookie(request, "X-Auth")
         val jwt = cookie?.value
-        return JwtSigner.validateJwt(jwt).map { token -> token.body.subject }
+        JwtSigner.validateJwt(jwt).map { token -> token.body.subject }
             .getOrHandle { throw CustomException.Unauthorized.TokenException() }
     }
 }

@@ -13,8 +13,7 @@ sealed class CustomException(message: String) : Exception(message) {
 
     sealed class BadRequest(message: String) : CustomException("Bad request: $message") {
         class RepeatedUserException(message: String) : BadRequest(message)
-        class NoMatchingUserTypeException :
-            BadRequest("No user type found for the one provided. Please try again with types USER or FIXER")
+        class PageDoesNotExistException(message: String) : BadRequest(message)
     }
 
     sealed class Forbidden(message: String?) : CustomException("Forbidden: $message") {

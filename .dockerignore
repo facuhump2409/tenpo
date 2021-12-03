@@ -3,11 +3,7 @@
 .gradle
 gradle
 Dockerfile
-DockerfileHeroku
-.travis.yml
-codecov.yml
 
 README.md
-HELP.md
 gradlew
 gradlew.bat

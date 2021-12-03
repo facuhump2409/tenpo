@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
+import java.net.URI
 import javax.servlet.http.HttpServletRequest
 
 @RequestMapping("/users")
@@ -19,7 +20,7 @@ class UserController(
     @PostMapping
     fun createUser(@RequestBody newUser: UserForm): ResponseEntity<DTO.UserDto> {
         userControllerService.createUser(newUser)
-        return ResponseEntity.ok().build()
+        return ResponseEntity.created(URI.create("/users")).build()
     }
 
     @PostMapping("/tokens")
@@ -31,7 +32,7 @@ class UserController(
     @DeleteMapping("/tokens")
     fun logout(request: HttpServletRequest): ResponseEntity<Void> {
         logger.info("Logging out user")
-        checkAndGetUserId(request)
+        checkUserLogin(request)
         return userControllerService.logout(request)
     }
 }

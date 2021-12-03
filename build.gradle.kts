@@ -18,11 +18,13 @@ repositories {
 dependencies {
     implementation("org.springframework.boot:spring-boot-starter-data-rest")
     implementation("org.springframework.boot:spring-boot-starter-web")
+    implementation("org.springframework.boot:spring-boot-starter-aop")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
     implementation("org.springframework.session:spring-session-core")
     implementation("io.jsonwebtoken:jjwt-api:0.11.1")
+    implementation("org.aspectj:aspectjrt:1.8.9")
     implementation("io.arrow-kt:arrow-core:0.10.5")
     implementation("io.arrow-kt:arrow-fx:0.10.5")
     implementation("io.arrow-kt:arrow-optics:0.10.5")

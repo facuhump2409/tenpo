@@ -5,8 +5,9 @@ import arrow.core.toOption
 import com.example.tenpo.model.users.User
 import com.example.tenpo.model.utils.SHA512Hash
 import org.springframework.stereotype.Component
+import org.springframework.stereotype.Repository
 
-@Component
+@Repository
 class UsersRepo {
     val users: MutableList<User> = mutableListOf()
 

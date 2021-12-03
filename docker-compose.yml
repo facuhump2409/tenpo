@@ -11,7 +11,7 @@ services:
             - backend
             - db
         environment:
-            - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/compose-postgres
+            - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/tenpo?serverTimezone=UTC
             - SPRING_DATASOURCE_USERNAME=root
             - SPRING_DATASOURCE_PASSWORD=root
             - SPRING_JPA_HIBERNATE_DDL_AUTO=update
@@ -20,9 +20,9 @@ services:
         image: postgres
         restart: always
         environment:
-            POSTGRES_USER: root
+            POSTGRES_USER: postgres
             POSTGRES_PASSWORD: root
-            POSTGRES_DB: test_db
+            POSTGRES_DB: tenpo
         ports:
             - "5432:5432"
         volumes:

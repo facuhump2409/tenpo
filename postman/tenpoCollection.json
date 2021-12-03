@@ -1,0 +1,193 @@
+{
+	"variables": [],
+	"info": {
+		"name": "Tenpo",
+		"_postman_id": "db308e95-a3a2-9be1-5e57-3245aaf321f9",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "localhost:8080/users/",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"postman.setGlobalVariable(\"X-AUTH\", postman.getResponseHeader(\"X-Auth\"));"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "localhost:8080/users/",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					},
+					{
+						"key": "Authorization",
+						"value": "Basic ZmFjdTEyM0Bob3RtYWlsLmNvbToxMjM0",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"mail\": \"facu12@hotmail.com\",\n\t\"password\": \"1234\"\n}"
+				},
+				"description": "Registracion de un usuario"
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/users/tokens",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"postman.setGlobalVariable(\"X-AUTH\", postman.getResponseHeader(\"Content-Type\"));"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "localhost:8080/users/tokens",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"mail\": \"facu12@hotmail.com\",\n\t\"password\": \"1234\"\n}"
+				},
+				"description": "Para crear un token de sesion, seria el endpoint para loguearse"
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/requests?page=1",
+			"request": {
+				"url": {
+					"raw": "localhost:8080/requests?page=1",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"requests"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "1",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/users/tokens",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"postman.setGlobalVariable(\"X-AUTH\", postman.getResponseHeader(\"Content-Type\"));"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "localhost:8080/users/tokens",
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": "Para desloguearse, osea eliminar el token de sesion"
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/multiplication",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"postman.setGlobalVariable(\"X-AUTH\", postman.getResponseHeader(\"Content-Type\"));"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": {
+					"raw": "localhost:8080/multiplication?number=2&anotherNumber=3",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"multiplication"
+					],
+					"query": [
+						{
+							"key": "number",
+							"value": "2",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "anotherNumber",
+							"value": "3",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"aNumber\": 1,\n\t\"anotherNumber\": 2\n}"
+				},
+				"description": "Conseguir la multiplicacion entre dos numeros"
+			},
+			"response": []
+		}
+	]
+}
